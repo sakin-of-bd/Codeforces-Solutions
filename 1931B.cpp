@@ -1,59 +1,38 @@
 #include<bits/stdc++.h>
-typedef long long ll;
-#define fs(i,n) for(int i=0;i<n;i++)
-#define fp(i,n) for(int i=n;i>=0;i--)
-using namespace std;
-int main()
-{
-   ll t;
-   cin>>t;
-   while(t--)
-   {
-    int n;
-    cin>>n; 
-    vector<ll>v(n);
-    
-    for(auto &i:v)
-    {
-        cin>>i;
-    }
-    if(n==1)
-    {
-        cout<<"Yes"<<endl;
-        return;
-    }
-    ll sum=0;
-    for(auto i:v)
-    {
-        sum+=i;
-    }
-    ll req=sum/n;
-    ll flag=0;
-    ll excess = 0;
 
-    for(ll i=0;i<n;i++);
-    {
-      if(v[i]>=req)
-      {
-        excess+=(v[i]-req);
-      }
-      else
-      {
-        ll required_amount=req-v[i];
-        if(excess>=required_amount)
-        {
-            excess-=required_amount;
-        }
-        else
-        {
-            cout<<"No"<<endl;
+using namespace std;
+using ll = long long;
+int testcase =0;
+
+void solve(){
+    int n;cin>>n;
+    int arr[n];
+    ll sum =0;
+    for(int i =0; i<n; i++){
+        cin >> arr[i];
+        sum+=arr[i];
+    }
+    ll avg = sum/n;
+    ll ex =0;
+
+    for(int i =0; i<n; i++){
+        ex+=(arr[i]-avg);
+
+        if(ex<0){
+            cout << "NO\n";
             return;
         }
-      }
     }
-    cout<<"Yes"<<endl;
-
-   }
-   
+    cout << "YES\n";
 }
 
+int main(){
+    ios_base::sync_with_stdio(false);cin.tie(0);
+    ll tc =1;
+    cin >> tc;
+    while(tc--){
+        testcase++;
+        solve();
+    }
+    return 0;
+}
